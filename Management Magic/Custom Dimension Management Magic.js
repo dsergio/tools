@@ -291,8 +291,11 @@ function updateCustomMetrics() {
         var name = cms[i][0], metricId="ga:metric"+cms[i][1], scope=cms[i][2], type=cms[i][3], active=cms[i][4];
         
         //Update the values in Google Analytics to match the current row of the sheet
+        var metricObj =  {"name":name, "scope":scope, "type":type, "active":active};
+        if(type === "TIME") { metricObj.min_value = "0"; }
+        
         Analytics.Management.CustomMetrics.update(
-          {"name":name, "scope":scope, "type":type, "active":active},
+          metricObj,
           account,
           property,
           metricId,
@@ -307,3 +310,4 @@ function updateCustomMetrics() {
     ui.alert('Update cancelled.');
   }
 }
+
