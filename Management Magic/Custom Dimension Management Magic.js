@@ -187,7 +187,7 @@ function listCustomMetrics() {
   // check the property type and set local variables to access the different limits dynamically
   if (propertyType == "PREMIUM") {
     propertyTypeSize = 200;
-    cdInfoRange = "premiumCMInfo";
+    cmInfoRange = "premiumCMInfo";
   }
   
   // capture the list of custom metrics and create a 2d array to store what will be output to the sheet
@@ -256,7 +256,7 @@ function updateCustomMetrics() {
   // check the property type and set local variables to access the different limits dynamically
   if (propertyType == "PREMIUM") {
     propertyTypeSize = 200;
-    cmInfoRange = "premiumCDInfo";
+    cmInfoRange = "premiumCMInfo";
   }
   
   // Capture the current values of the range in the custom metrics sheet
@@ -293,7 +293,7 @@ function updateCustomMetrics() {
         //Update the values in Google Analytics to match the current row of the sheet
         var metricObj =  {"name":name, "scope":scope, "type":type, "active":active};
         if(type === "TIME") { metricObj.min_value = "0"; }
-        
+
         Analytics.Management.CustomMetrics.update(
           metricObj,
           account,
